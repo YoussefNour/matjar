@@ -8,6 +8,7 @@
     "dev:landing": "nx next:dev landing",
     "build": "nx run-many -t next:build",
     "lint": "nx run-many -t eslint:lint",
+    "test": "nx run-many -t test",
     "format": "nx format:write",
     "graph": "nx graph"
   },
