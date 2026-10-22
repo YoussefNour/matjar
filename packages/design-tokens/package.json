@@ -1,0 +1,33 @@
+{
+  "name": "@matjar/design-tokens",
+  "version": "0.0.0",
+  "private": true,
+  "description": "Matjar's shared design tokens: Tailwind CSS theme, typography, color, motion, and RTL/Arabic foundations.",
+  "style": "./src/index.css",
+  "exports": {
+    ".": "./src/index.css",
+    "./theme.css": "./src/theme.css",
+    "./base.css": "./src/base.css",
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "src",
+    "assets"
+  ],
+  "nx": {
+    "name": "design-tokens",
+    "tags": [
+      "scope:shared",
+      "type:styles"
+    ],
+    "targets": {
+      "test": {
+        "executor": "nx:run-commands",
+        "options": {
+          "command": "node --test src/tokens.test.mjs",
+          "cwd": "{projectRoot}"
+        }
+      }
+    }
+  }
+}

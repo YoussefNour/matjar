@@ -1,5 +1,7 @@
 import type { ReactNode } from "react";
 
+import { MatjarMark } from "./components/matjar-mark";
+
 const storeUrl = process.env.NEXT_PUBLIC_STORE_URL ?? "http://localhost:3000";
 
 const features = [
@@ -45,6 +47,40 @@ const features = [
   },
 ];
 
+const services = [
+  {
+    title: "Custom software",
+    description:
+      "A workflow no product covers? We design and build it with you, from first sketch to production.",
+    icon: <path d="m9 8-4 4 4 4M15 8l4 4-4 4M13 5l-2 14" />,
+  },
+  {
+    title: "Integrations",
+    description:
+      "Connect Matjar to your ERP, accounting, payment, and shipping systems so data moves without re-typing.",
+    icon: (
+      <path d="M10 13a5 5 0 0 0 7 0l3-3a5 5 0 0 0-7-7l-1 1M14 11a5 5 0 0 0-7 0l-3 3a5 5 0 0 0 7 7l1-1" />
+    ),
+  },
+  {
+    title: "Business portals",
+    description:
+      "Customer, partner, and staff portals that sit next to your store and work from the same data.",
+    icon: <path d="M3 5h18v14H3V5Zm0 4h18M7 6.5h.01M9.5 6.5h.01M12 6.5h.01" />,
+  },
+  {
+    title: "Ongoing engineering",
+    description:
+      "Support, maintenance, and new features after launch, with the same team that built the system.",
+    icon: (
+      <>
+        <path d="M12 3 4 6v6c0 4.5 3.4 7.6 8 9 4.6-1.4 8-4.5 8-9V6l-8-3Z" />
+        <path d="m9 12 2 2 4-4" />
+      </>
+    ),
+  },
+];
+
 const steps = [
   {
     number: "01",
@@ -71,6 +107,11 @@ const faqs = [
     question: "Do I need a developer?",
     answer:
       "No. Matjar is built for sellers. You can launch, add products, and manage orders entirely from the dashboard.",
+  },
+  {
+    question: "Can you build something custom for my business?",
+    answer:
+      "Yes. Matjar is the commerce platform, and our engineering team builds the custom pieces around it: portals, integrations, internal tools, and new products. We have almost a decade of experience delivering software at ITworx, Ejada, Bank Misr, and Suez Canal Bank. Write to hello@matjar.store with what you need.",
   },
   {
     question: "Can I use my own domain?",
@@ -108,7 +149,7 @@ function ArrowRight({ className = "" }: { className?: string }) {
 
 function FeatureIcon({ children }: { children: ReactNode }) {
   return (
-    <span className="grid size-10 place-items-center rounded-xl bg-emerald-50 text-emerald-700 ring-1 ring-emerald-600/10">
+    <span className="grid size-10 place-items-center rounded-xl bg-primary-subtle text-primary-subtle-foreground ring-1 ring-primary/10">
       <svg
         aria-hidden="true"
         viewBox="0 0 24 24"
@@ -132,72 +173,72 @@ function HeroPreview() {
     <div className="relative mx-auto w-full max-w-md lg:max-w-none">
       <div
         aria-hidden="true"
-        className="absolute -inset-5 -z-10 rounded-[2.5rem] bg-linear-to-br from-emerald-200/70 via-lime-100/60 to-amber-100/70 blur-2xl"
+        className="absolute -inset-5 -z-10 rounded-3xl bg-linear-to-br from-palm-200/70 via-nile-100/60 to-mango-100/70 blur-2xl"
       />
 
-      <div className="overflow-hidden rounded-[1.75rem] border border-stone-200/80 bg-white shadow-2xl shadow-stone-900/10">
-        <div className="flex items-center gap-1.5 border-b border-stone-100 bg-stone-50/80 px-4 py-3">
-          <span className="size-2.5 rounded-full bg-stone-300" />
-          <span className="size-2.5 rounded-full bg-stone-200" />
-          <span className="size-2.5 rounded-full bg-stone-200" />
-          <span className="ml-2 truncate rounded-md bg-white px-2 py-1 text-[11px] text-stone-500 ring-1 ring-stone-200">
+      <div className="overflow-hidden rounded-2xl border border-border/80 bg-surface shadow-2xl">
+        <div className="flex items-center gap-1.5 border-b border-border bg-surface-muted/80 px-4 py-3">
+          <span className="size-2.5 rounded-full bg-border-strong" />
+          <span className="size-2.5 rounded-full bg-border" />
+          <span className="size-2.5 rounded-full bg-border" />
+          <span className="ms-2 truncate rounded-md bg-surface px-2 py-1 text-caption text-foreground-muted ring-1 ring-border">
             matjar.store/your-shop
           </span>
         </div>
 
         <div className="grid gap-4 p-4 sm:grid-cols-[1.15fr_0.85fr]">
-          <div className="rounded-2xl border border-stone-100 bg-stone-50/60 p-3">
-            <div className="relative aspect-4/3 overflow-hidden rounded-xl bg-linear-to-br from-emerald-200 via-teal-100 to-amber-100">
-              <span className="absolute left-2.5 top-2.5 rounded-full bg-white/80 px-2 py-0.5 text-[10px] font-medium text-emerald-800 backdrop-blur">
+          <div className="rounded-2xl border border-border bg-surface-muted/60 p-3">
+            <div className="relative aspect-4/3 overflow-hidden rounded-xl bg-linear-to-br from-palm-200 via-nile-100 to-mango-100">
+              <span className="absolute start-2.5 top-2.5 rounded-full bg-surface/80 px-2 py-0.5 text-caption font-medium text-primary-subtle-foreground backdrop-blur">
                 New drop
               </span>
               <div className="absolute inset-0 grid place-items-center">
-                <div className="h-24 w-16 rounded-t-full rounded-b-lg bg-white/70 shadow-sm" />
+                <div className="h-24 w-16 rounded-t-full rounded-b-lg bg-surface/70 shadow-sm" />
               </div>
             </div>
 
             <div className="mt-3 flex items-start justify-between gap-2">
               <div>
-                <p className="text-sm font-semibold">Linen overshirt</p>
-                <p className="text-[11px] text-stone-500">Sand · M</p>
+                <p className="text-small font-semibold">Linen overshirt</p>
+                <p className="text-caption text-foreground-muted">Sand · M</p>
               </div>
-              <p className="font-mono text-sm">$89</p>
+              <p className="font-mono text-small">$89</p>
             </div>
 
-            <div className="mt-3 rounded-lg bg-stone-900 py-2 text-center text-[11px] font-medium text-white">
+            <div className="mt-3 rounded-lg bg-foreground py-2 text-center text-caption font-medium text-background">
               Add to cart
             </div>
           </div>
 
-          <div className="rounded-2xl border border-stone-100 bg-white p-3 sm:mt-8">
+          <div className="rounded-2xl border border-border bg-surface p-3 sm:mt-8">
             <div className="flex items-center justify-between">
-              <p className="text-[10px] uppercase tracking-[0.14em] text-stone-400">
+              <p className="text-caption uppercase tracking-widest text-foreground-subtle">
                 Revenue
               </p>
-              <span className="rounded-full bg-emerald-50 px-1.5 py-0.5 text-[10px] font-medium text-emerald-700">
+              <span className="rounded-full bg-primary-subtle px-1.5 py-0.5 text-caption font-medium text-primary-subtle-foreground">
                 Live
               </span>
             </div>
-            <p className="mt-1 font-mono text-2xl tracking-tight">$1,284</p>
-            <p className="text-[10px] text-emerald-600">+18% today</p>
+            <p className="mt-1 font-mono text-h3">$1,284</p>
+            <p className="text-caption text-success">+18% today</p>
 
             <div className="mt-4 flex h-16 items-end gap-1" aria-hidden="true">
               {bars.map((height, index) => (
                 <span
                   key={index}
                   style={{ height: `${height}%` }}
-                  className="flex-1 rounded-sm bg-emerald-500/80"
+                  className="flex-1 rounded-sm bg-chart-1"
                 />
               ))}
             </div>
 
-            <div className="mt-4 space-y-2 border-t border-stone-100 pt-3 text-[11px]">
+            <div className="mt-4 space-y-2 border-t border-border pt-3 text-caption">
               <div className="flex items-center justify-between">
-                <span className="text-stone-500">#1042 · Order</span>
+                <span className="text-foreground-muted">#1042 · Order</span>
                 <span className="font-mono">$89</span>
               </div>
               <div className="flex items-center justify-between">
-                <span className="text-stone-500">#1041 · Order</span>
+                <span className="text-foreground-muted">#1041 · Order</span>
                 <span className="font-mono">$142</span>
               </div>
             </div>
@@ -205,8 +246,8 @@ function HeroPreview() {
         </div>
       </div>
 
-      <div className="absolute -bottom-5 -left-3 hidden items-center gap-2 rounded-xl border border-stone-200 bg-white px-3 py-2 text-xs shadow-lg shadow-stone-900/10 sm:flex">
-        <span className="grid size-6 place-items-center rounded-full bg-emerald-100 text-emerald-700">
+      <div className="absolute -bottom-5 -start-3 hidden items-center gap-2 rounded-xl border border-border bg-surface px-3 py-2 text-caption shadow-lg sm:flex">
+        <span className="grid size-6 place-items-center rounded-full bg-primary-subtle text-primary-subtle-foreground">
           <svg
             aria-hidden="true"
             viewBox="0 0 24 24"
@@ -222,7 +263,7 @@ function HeroPreview() {
         </span>
         <span>
           <span className="font-medium">New order</span>
-          <span className="text-stone-500"> · just now</span>
+          <span className="text-foreground-muted"> · just now</span>
         </span>
       </div>
     </div>
@@ -232,40 +273,46 @@ function HeroPreview() {
 export default function Home() {
   return (
     <>
-      <header className="sticky top-0 z-50 border-b border-stone-900/5 bg-[#faf9f6]/80 backdrop-blur-md">
-        <div className="mx-auto flex max-w-6xl items-center justify-between px-5 py-4 sm:px-8">
+      <header className="sticky top-0 z-50 border-b border-foreground/5 bg-background/80 backdrop-blur-md">
+        <div className="mx-auto flex max-w-page items-center justify-between px-5 py-4 sm:px-8">
           <a
             href="#"
             className="flex items-center gap-2.5"
             aria-label="Matjar home"
           >
-            <span className="grid size-8 place-items-center rounded-lg bg-emerald-600 text-sm font-semibold text-white">
-              m
+            <MatjarMark className="size-9 text-primary" />
+            <span className="text-lead font-semibold tracking-tight">
+              matjar
             </span>
-            <span className="text-lg font-semibold tracking-tight">matjar</span>
           </a>
 
-          <nav className="hidden items-center gap-7 text-sm text-stone-600 md:flex">
+          <nav className="hidden items-center gap-7 text-small text-foreground-muted md:flex">
             <a
-              className="transition-colors hover:text-stone-950"
+              className="transition-colors hover:text-foreground"
               href="#features"
             >
               Features
             </a>
             <a
-              className="transition-colors hover:text-stone-950"
+              className="transition-colors hover:text-foreground"
+              href="#services"
+            >
+              Services
+            </a>
+            <a
+              className="transition-colors hover:text-foreground"
               href="#how-it-works"
             >
               How it works
             </a>
-            <a className="transition-colors hover:text-stone-950" href="#faq">
+            <a className="transition-colors hover:text-foreground" href="#faq">
               FAQ
             </a>
           </nav>
 
           <a
             href={storeUrl}
-            className="inline-flex items-center gap-1.5 rounded-full bg-stone-900 px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-stone-700"
+            className="inline-flex items-center gap-1.5 rounded-full bg-primary px-4 py-2 text-small font-medium text-primary-foreground transition-colors hover:bg-primary-hover"
           >
             Open store
             <ArrowRight className="size-4" />
@@ -277,66 +324,67 @@ export default function Home() {
         <section className="relative overflow-hidden">
           <div
             aria-hidden="true"
-            className="pointer-events-none absolute -top-40 right-0 size-[32rem] rounded-full bg-emerald-200/40 blur-3xl"
+            className="pointer-events-none absolute -top-40 end-0 size-128 rounded-full bg-palm-200/40 blur-3xl"
           />
           <div
             aria-hidden="true"
-            className="pointer-events-none absolute -left-40 top-40 size-[26rem] rounded-full bg-amber-100/60 blur-3xl"
+            className="pointer-events-none absolute -start-40 top-40 size-104 rounded-full bg-mango-100/60 blur-3xl"
           />
 
-          <div className="relative mx-auto grid max-w-6xl gap-16 px-5 pb-20 pt-14 sm:px-8 sm:pt-20 lg:grid-cols-[1.05fr_1fr] lg:items-center lg:gap-12 lg:pb-28 lg:pt-24">
+          <div className="relative mx-auto grid max-w-page gap-16 px-5 pb-20 pt-14 sm:px-8 sm:pt-20 lg:grid-cols-[1.05fr_1fr] lg:items-center lg:gap-12 lg:pb-28 lg:pt-24">
             <div>
-              <p className="inline-flex items-center gap-2 rounded-full border border-emerald-600/15 bg-emerald-50 px-3 py-1 text-xs font-medium text-emerald-800">
-                <span className="size-1.5 rounded-full bg-emerald-500" />
+              <p className="inline-flex items-center gap-2 rounded-full border border-primary/15 bg-primary-subtle px-3 py-1 text-caption font-medium text-primary-subtle-foreground">
+                <span className="size-1.5 rounded-full bg-primary" />
                 Private beta · now onboarding
               </p>
 
-              <h1 className="mt-6 text-balance text-5xl font-semibold leading-[1.02] tracking-[-0.04em] sm:text-6xl lg:text-7xl">
+              <h1 className="mt-6 text-balance text-display">
                 Your store,
                 <br />
-                <span className="text-emerald-700">live by lunch.</span>
+                <span className="text-primary">live by lunch.</span>
               </h1>
 
-              <p className="mt-6 max-w-xl text-lg leading-8 text-stone-600">
+              <p className="mt-6 max-w-xl text-lead leading-8 text-foreground-muted">
                 Matjar gives independent sellers a beautiful storefront, a calm
                 dashboard, and everything needed to take orders — without hiring
-                a developer.
+                a developer. When you need something custom, our engineering
+                team can build that too.
               </p>
 
               <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:items-center">
                 <a
                   href={storeUrl}
-                  className="inline-flex items-center justify-center gap-2 rounded-full bg-emerald-600 px-6 py-3.5 text-sm font-semibold text-white shadow-lg shadow-emerald-600/20 transition-colors hover:bg-emerald-700"
+                  className="inline-flex items-center justify-center gap-2 rounded-full bg-primary px-6 py-3.5 text-small font-semibold text-primary-foreground shadow-lg transition-colors hover:bg-primary-hover"
                 >
                   Start selling free
                   <ArrowRight className="size-4" />
                 </a>
                 <a
                   href="#how-it-works"
-                  className="inline-flex items-center justify-center rounded-full border border-stone-300 bg-white/60 px-6 py-3.5 text-sm font-medium text-stone-700 transition-colors hover:border-stone-400 hover:text-stone-950"
+                  className="inline-flex items-center justify-center rounded-full border border-border-strong bg-surface/60 px-6 py-3.5 text-small font-medium text-foreground-muted transition-colors hover:border-foreground-subtle hover:text-foreground"
                 >
                   See how it works
                 </a>
               </div>
 
-              <dl className="mt-10 grid max-w-md grid-cols-3 gap-4 border-t border-stone-200 pt-6">
+              <dl className="mt-10 grid max-w-md grid-cols-3 gap-4 border-t border-border pt-6">
                 <div>
-                  <dt className="text-[11px] uppercase tracking-[0.12em] text-stone-400">
+                  <dt className="text-caption uppercase tracking-widest text-foreground-subtle">
                     Launch
                   </dt>
-                  <dd className="mt-1 text-sm font-semibold">2 minutes</dd>
+                  <dd className="mt-1 text-small font-semibold">2 minutes</dd>
                 </div>
                 <div>
-                  <dt className="text-[11px] uppercase tracking-[0.12em] text-stone-400">
+                  <dt className="text-caption uppercase tracking-widest text-foreground-subtle">
                     Code
                   </dt>
-                  <dd className="mt-1 text-sm font-semibold">None needed</dd>
+                  <dd className="mt-1 text-small font-semibold">None needed</dd>
                 </div>
                 <div>
-                  <dt className="text-[11px] uppercase tracking-[0.12em] text-stone-400">
+                  <dt className="text-caption uppercase tracking-widest text-foreground-subtle">
                     Dashboard
                   </dt>
-                  <dd className="mt-1 text-sm font-semibold">One place</dd>
+                  <dd className="mt-1 text-small font-semibold">One place</dd>
                 </div>
               </dl>
             </div>
@@ -347,17 +395,17 @@ export default function Home() {
 
         <section
           id="features"
-          className="scroll-mt-24 border-y border-stone-200/70 bg-white/50"
+          className="scroll-mt-24 border-y border-border/70 bg-surface/50"
         >
-          <div className="mx-auto max-w-6xl px-5 py-20 sm:px-8 lg:py-28">
+          <div className="mx-auto max-w-page px-5 py-20 sm:px-8 lg:py-28">
             <div className="max-w-2xl">
-              <p className="text-xs font-semibold uppercase tracking-[0.18em] text-emerald-700">
+              <p className="text-caption uppercase tracking-widest text-primary">
                 Everything included
               </p>
-              <h2 className="mt-3 text-balance text-3xl font-semibold tracking-[-0.03em] sm:text-4xl">
+              <h2 className="mt-3 text-balance text-h2">
                 Everything you need to open shop
               </h2>
-              <p className="mt-4 text-base leading-7 text-stone-600">
+              <p className="mt-4 text-body leading-7 text-foreground-muted">
                 No plugin sprawl, no setup weekend. Matjar keeps the essentials
                 together so you can focus on your products.
               </p>
@@ -367,13 +415,11 @@ export default function Home() {
               {features.map((feature) => (
                 <article
                   key={feature.title}
-                  className="rounded-2xl border border-stone-200/80 bg-white p-6 transition duration-200 hover:-translate-y-0.5 hover:shadow-lg hover:shadow-stone-900/5"
+                  className="rounded-2xl border border-border/80 bg-surface p-6 transition duration-200 hover:-translate-y-0.5 hover:shadow-lg"
                 >
                   <FeatureIcon>{feature.icon}</FeatureIcon>
-                  <h3 className="mt-4 text-base font-semibold">
-                    {feature.title}
-                  </h3>
-                  <p className="mt-2 text-sm leading-6 text-stone-600">
+                  <h3 className="mt-4 text-h3">{feature.title}</h3>
+                  <p className="mt-2 text-small leading-6 text-foreground-muted">
                     {feature.description}
                   </p>
                 </article>
@@ -382,17 +428,84 @@ export default function Home() {
           </div>
         </section>
 
+        <section id="services" className="scroll-mt-24">
+          <div className="mx-auto max-w-page px-5 py-20 sm:px-8 lg:py-28">
+            <div className="grid gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:gap-16">
+              <div>
+                <p className="text-caption uppercase tracking-widest text-primary">
+                  Software services
+                </p>
+                <h2 className="mt-3 text-balance text-h2">
+                  More than a storefront
+                </h2>
+                <p className="mt-4 text-lead text-foreground-muted">
+                  Matjar is a commerce platform, but our business does not stop
+                  at shops. We build the software your business needs around
+                  them — even when that software does not exist yet.
+                </p>
+                <p className="mt-4 text-body text-foreground-muted">
+                  If your store or business needs a custom portal, an
+                  integration, or a tool no product covers, our engineers design
+                  and build it with you.
+                </p>
+
+                <div className="mt-6 rounded-2xl border border-border bg-surface-muted/60 p-5">
+                  <p className="text-caption uppercase tracking-widest text-foreground-subtle">
+                    Engineering background
+                  </p>
+                  <p className="mt-2 text-small leading-6 text-foreground-muted">
+                    Almost a decade of experience delivering software at{" "}
+                    <span className="font-medium text-foreground">ITworx</span>,{" "}
+                    <span className="font-medium text-foreground">Ejada</span>,{" "}
+                    <span className="font-medium text-foreground">
+                      Bank Misr
+                    </span>
+                    , and{" "}
+                    <span className="font-medium text-foreground">
+                      Suez Canal Bank
+                    </span>
+                    .
+                  </p>
+                </div>
+
+                <a
+                  href="mailto:hello@matjar.store?subject=Custom%20software"
+                  className="mt-6 inline-flex min-h-11 items-center gap-2 rounded-lg border border-border bg-surface px-4 text-small font-medium text-foreground transition-colors hover:border-border-strong hover:bg-surface-muted"
+                >
+                  Tell us what you need
+                  <ArrowRight className="size-4 icon-directional" />
+                </a>
+              </div>
+
+              <ul className="grid gap-4 sm:grid-cols-2">
+                {services.map((service) => (
+                  <li
+                    key={service.title}
+                    className="rounded-2xl border border-border bg-surface p-6 transition duration-200 hover:shadow-lg"
+                  >
+                    <FeatureIcon>{service.icon}</FeatureIcon>
+                    <h3 className="mt-4 text-h3">{service.title}</h3>
+                    <p className="mt-2 text-small leading-6 text-foreground-muted">
+                      {service.description}
+                    </p>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        </section>
+
         <section id="how-it-works" className="scroll-mt-24">
-          <div className="mx-auto max-w-6xl px-5 py-20 sm:px-8 lg:py-28">
+          <div className="mx-auto max-w-page px-5 py-20 sm:px-8 lg:py-28">
             <div className="grid gap-12 lg:grid-cols-[0.8fr_1.2fr] lg:gap-16">
               <div>
-                <p className="text-xs font-semibold uppercase tracking-[0.18em] text-emerald-700">
+                <p className="text-caption uppercase tracking-widest text-primary">
                   How it works
                 </p>
-                <h2 className="mt-3 text-balance text-3xl font-semibold tracking-[-0.03em] sm:text-4xl">
+                <h2 className="mt-3 text-balance text-h2">
                   From idea to first order in three steps
                 </h2>
-                <p className="mt-4 text-base leading-7 text-stone-600">
+                <p className="mt-4 text-body leading-7 text-foreground-muted">
                   Skip the setup spiral. Matjar handles the scaffolding so you
                   can get your products in front of people.
                 </p>
@@ -402,14 +515,14 @@ export default function Home() {
                 {steps.map((step) => (
                   <li
                     key={step.number}
-                    className="flex gap-5 rounded-2xl border border-stone-200/80 bg-white p-6"
+                    className="flex gap-5 rounded-2xl border border-border/80 bg-surface p-6"
                   >
-                    <span className="font-mono text-sm text-emerald-700">
+                    <span className="font-mono text-small text-primary">
                       {step.number}
                     </span>
                     <div>
-                      <h3 className="text-base font-semibold">{step.title}</h3>
-                      <p className="mt-1.5 text-sm leading-6 text-stone-600">
+                      <h3 className="text-h3">{step.title}</h3>
+                      <p className="mt-1.5 text-small leading-6 text-foreground-muted">
                         {step.description}
                       </p>
                     </div>
@@ -422,20 +535,18 @@ export default function Home() {
 
         <section
           id="faq"
-          className="scroll-mt-24 border-y border-stone-200/70 bg-white/50"
+          className="scroll-mt-24 border-y border-border/70 bg-surface/50"
         >
-          <div className="mx-auto grid max-w-6xl gap-10 px-5 py-20 sm:px-8 lg:grid-cols-[0.8fr_1.2fr] lg:gap-16 lg:py-28">
+          <div className="mx-auto grid max-w-page gap-10 px-5 py-20 sm:px-8 lg:grid-cols-[0.8fr_1.2fr] lg:gap-16 lg:py-28">
             <div>
-              <p className="text-xs font-semibold uppercase tracking-[0.18em] text-emerald-700">
+              <p className="text-caption uppercase tracking-widest text-primary">
                 FAQ
               </p>
-              <h2 className="mt-3 text-3xl font-semibold tracking-[-0.03em] sm:text-4xl">
-                Good questions
-              </h2>
-              <p className="mt-4 text-base leading-7 text-stone-600">
+              <h2 className="mt-3 text-h2">Good questions</h2>
+              <p className="mt-4 text-body leading-7 text-foreground-muted">
                 Still curious? Write to us at{" "}
                 <a
-                  className="font-medium text-emerald-700 underline-offset-4 hover:underline"
+                  className="font-medium text-primary underline-offset-4 hover:underline"
                   href="mailto:hello@matjar.store"
                 >
                   hello@matjar.store
@@ -444,10 +555,10 @@ export default function Home() {
               </p>
             </div>
 
-            <div className="divide-y divide-stone-200 border-y border-stone-200">
+            <div className="divide-y divide-border border-y border-border">
               {faqs.map((faq) => (
                 <details key={faq.question} className="group py-5">
-                  <summary className="flex cursor-pointer list-none items-center justify-between gap-4 text-sm font-medium [&::-webkit-details-marker]:hidden">
+                  <summary className="flex cursor-pointer list-none items-center justify-between gap-4 text-small font-medium [&::-webkit-details-marker]:hidden">
                     {faq.question}
                     <svg
                       aria-hidden="true"
@@ -456,12 +567,12 @@ export default function Home() {
                       stroke="currentColor"
                       strokeWidth="1.8"
                       strokeLinecap="round"
-                      className="size-4 shrink-0 text-stone-400 transition-transform group-open:rotate-45"
+                      className="size-4 shrink-0 text-foreground-subtle transition-transform group-open:rotate-45"
                     >
                       <path d="M12 5v14M5 12h14" />
                     </svg>
                   </summary>
-                  <p className="mt-3 max-w-xl text-sm leading-6 text-stone-600">
+                  <p className="mt-3 max-w-xl text-small leading-6 text-foreground-muted">
                     {faq.answer}
                   </p>
                 </details>
@@ -471,32 +582,32 @@ export default function Home() {
         </section>
 
         <section className="px-5 py-20 sm:px-8 lg:py-24">
-          <div className="relative mx-auto max-w-6xl overflow-hidden rounded-[2rem] bg-stone-900 px-6 py-16 text-center sm:px-12">
+          <div className="relative mx-auto max-w-page overflow-hidden rounded-3xl bg-foreground px-6 py-16 text-center sm:px-12">
             <div
               aria-hidden="true"
-              className="pointer-events-none absolute -right-20 -top-24 size-80 rounded-full bg-emerald-500/20 blur-3xl"
+              className="pointer-events-none absolute -end-20 -top-24 size-80 rounded-full bg-primary/20 blur-3xl"
             />
             <div
               aria-hidden="true"
-              className="pointer-events-none absolute -bottom-24 -left-20 size-80 rounded-full bg-amber-400/10 blur-3xl"
+              className="pointer-events-none absolute -bottom-24 -start-20 size-80 rounded-full bg-mango-400/10 blur-3xl"
             />
 
             <div className="relative">
-              <h2 className="text-balance text-3xl font-semibold tracking-[-0.03em] text-white sm:text-4xl">
+              <h2 className="text-balance text-h2 text-background">
                 Ready to open your shop?
               </h2>
-              <p className="mx-auto mt-4 max-w-xl text-base leading-7 text-stone-300">
+              <p className="mx-auto mt-4 max-w-xl text-body leading-7 text-background">
                 Bring your products. Matjar brings the storefront, dashboard,
                 and checkout. You could be live before your coffee goes cold.
               </p>
               <a
                 href={storeUrl}
-                className="mt-8 inline-flex items-center justify-center gap-2 rounded-full bg-emerald-500 px-6 py-3.5 text-sm font-semibold text-emerald-950 transition-colors hover:bg-emerald-400"
+                className="mt-8 inline-flex items-center justify-center gap-2 rounded-full bg-accent px-6 py-3.5 text-small font-semibold text-accent-foreground transition-colors hover:bg-accent/90"
               >
                 Open your store
                 <ArrowRight className="size-4" />
               </a>
-              <p className="mt-4 text-xs text-stone-400">
+              <p className="mt-4 text-caption text-background">
                 Free while in beta · No credit card required
               </p>
             </div>
@@ -504,34 +615,37 @@ export default function Home() {
         </section>
       </main>
 
-      <footer className="border-t border-stone-200/70">
-        <div className="mx-auto flex max-w-6xl flex-col gap-6 px-5 py-10 sm:flex-row sm:items-center sm:justify-between sm:px-8">
+      <footer className="border-t border-border/70">
+        <div className="mx-auto flex max-w-page flex-col gap-6 px-5 py-10 sm:flex-row sm:items-center sm:justify-between sm:px-8">
           <div className="flex items-center gap-2.5">
-            <span className="grid size-7 place-items-center rounded-md bg-emerald-600 text-xs font-semibold text-white">
+            <span className="grid size-7 place-items-center rounded-md bg-primary text-caption font-semibold text-primary-foreground">
               m
             </span>
-            <span className="text-sm font-semibold">matjar</span>
-            <span className="text-sm text-stone-400">
-              · built for independent sellers
+            <span className="text-small font-semibold">matjar</span>
+            <span className="text-small text-foreground-subtle">
+              · commerce software and custom builds
             </span>
           </div>
 
-          <nav className="flex flex-wrap items-center gap-x-6 gap-y-2 text-sm text-stone-500">
-            <a className="hover:text-stone-900" href="#features">
+          <nav className="flex flex-wrap items-center gap-x-6 gap-y-2 text-small text-foreground-muted">
+            <a className="hover:text-foreground" href="#features">
               Features
             </a>
-            <a className="hover:text-stone-900" href="#how-it-works">
+            <a className="hover:text-foreground" href="#services">
+              Services
+            </a>
+            <a className="hover:text-foreground" href="#how-it-works">
               How it works
             </a>
             <a
-              className="hover:text-stone-900"
+              className="hover:text-foreground"
               href="https://github.com/YoussefNour/matjar"
               target="_blank"
               rel="noopener noreferrer"
             >
               GitHub
             </a>
-            <span className="text-stone-400">
+            <span className="text-foreground-subtle">
               © {new Date().getFullYear()} Matjar
             </span>
           </nav>

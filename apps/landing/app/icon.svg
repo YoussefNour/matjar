@@ -1,0 +1,20 @@
+<svg
+  xmlns="http://www.w3.org/2000/svg"
+  viewBox="0 0 512 512"
+  role="img"
+  aria-labelledby="matjar-app-icon-title"
+>
+  <title id="matjar-app-icon-title">Matjar</title>
+  <rect width="512" height="512" rx="113" fill="#086245" />
+  <g transform="translate(256 256) scale(7) translate(-32 -31)">
+    <path
+      d="M15 51V33a8.5 8.5 0 0 1 17 0v18M32 33a8.5 8.5 0 0 1 17 0v18"
+      fill="none"
+      stroke="#fbf8f2"
+      stroke-width="9"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+    />
+    <circle cx="32" cy="11.5" r="5.5" fill="#ffc155" />
+  </g>
+</svg>
