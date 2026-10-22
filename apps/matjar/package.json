@@ -1,0 +1,41 @@
+{
+  "name": "matjar",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "nx next:dev",
+    "build": "nx next:build",
+    "start": "nx next:start",
+    "lint": "eslint"
+  },
+  "dependencies": {
+    "next": "16.4.0",
+    "react": "19.3.0",
+    "react-dom": "19.3.0"
+  },
+  "devDependencies": {
+    "@tailwindcss/turbopack": "^4",
+    "@types/node": "^24.0.0",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "eslint": "^9",
+    "eslint-config-next": "16.4.0",
+    "tailwindcss": "^4",
+    "typescript": "~6.0.3"
+  },
+  "nx": {
+    "sourceRoot": "apps/matjar",
+    "targets": {
+      "next:dev": {
+        "options": {
+          "command": "next dev --port 3000"
+        }
+      },
+      "next:start": {
+        "options": {
+          "command": "next start --port 3000"
+        }
+      }
+    }
+  }
+}
