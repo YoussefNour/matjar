@@ -1,0 +1,94 @@
+/*
+ * Matjar base layer.
+ * Subtract nothing that Tailwind Preflight already handles; add only the
+ * document-level defaults, accessible focus treatment, and Arabic/RTL rules
+ * that every Matjar surface should share.
+ */
+
+@layer base {
+  html {
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+    text-rendering: optimizeLegibility;
+  }
+
+  body {
+    background-color: var(--background);
+    color: var(--foreground);
+    font-family: var(--font-sans);
+    font-synthesis-weight: none;
+  }
+
+  ::selection {
+    background-color: var(--color-palm-200);
+    color: var(--color-palm-950);
+  }
+
+  .dark ::selection {
+    background-color: var(--color-palm-700);
+    color: var(--color-sand-50);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--ring);
+    outline-offset: 2px;
+  }
+
+  :where(button, [role="button"]):not(:disabled) {
+    cursor: pointer;
+  }
+
+  :where(button, [role="button"]):disabled {
+    cursor: not-allowed;
+  }
+}
+
+/*
+ * Arabic typography needs more vertical room than Latin display type and must
+ * never inherit negative tracking. Overriding the theme variables is enough
+ * because Tailwind's text utilities read from them.
+ */
+@layer base {
+  html[lang="ar"] {
+    --text-display-lg--line-height: 1.15;
+    --text-display-lg--letter-spacing: 0em;
+    --text-display--line-height: 1.2;
+    --text-display--letter-spacing: 0em;
+    --text-h1--line-height: 1.25;
+    --text-h1--letter-spacing: 0em;
+    --text-h2--line-height: 1.35;
+    --text-h2--letter-spacing: 0em;
+    --text-h3--line-height: 1.5;
+    --text-h3--letter-spacing: 0em;
+    --text-caption--letter-spacing: 0em;
+  }
+
+  html[lang="ar"] body {
+    font-family: var(--font-arabic);
+    line-height: 1.75;
+  }
+
+  [dir="rtl"] .icon-directional {
+    transform: scaleX(-1);
+  }
+
+  [dir="rtl"]
+    :where(input[type="email"], input[type="tel"], input[type="url"]) {
+    direction: ltr;
+    text-align: start;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+
+    *,
+    ::before,
+    ::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+}

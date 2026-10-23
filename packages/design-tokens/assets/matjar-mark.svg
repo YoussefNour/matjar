@@ -1,0 +1,21 @@
+<svg
+  xmlns="http://www.w3.org/2000/svg"
+  viewBox="0 0 64 64"
+  role="img"
+  aria-labelledby="matjar-mark-title matjar-mark-desc"
+>
+  <title id="matjar-mark-title">Matjar</title>
+  <desc id="matjar-mark-desc">
+    An arcade of three columns and two round arches forming the letter m, with
+    a mango sun above.
+  </desc>
+  <path
+    d="M15 51V33a8.5 8.5 0 0 1 17 0v18M32 33a8.5 8.5 0 0 1 17 0v18"
+    fill="none"
+    stroke="var(--primary, #086245)"
+    stroke-width="9"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+  />
+  <circle cx="32" cy="11.5" r="5.5" fill="var(--accent, #ffc155)" />
+</svg>
