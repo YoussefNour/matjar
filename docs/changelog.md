@@ -13,6 +13,13 @@ All notable changes to this project are documented here. Format:
 - Added inquiry validation tests and documented `RESEND_API_KEY` and optional
   `CONTACT_TO`.
 
+## 2026-10-24: Fixed the Vercel landing build command - Ahmed Bahaa
+
+- The landing `build` script now runs Next from the workspace install instead
+  of calling `nx`, which is not on the path when Vercel builds `apps/landing`.
+- Set the Next file-tracing root to the monorepo so the shared design tokens
+  are included in the deployment.
+
 ## 2026-10-22: Added a pull request skill and description style - Youssef Ossama
 
 - Added `.opencode/skills/create-pr/` with the branch-to-PR workflow: scope
