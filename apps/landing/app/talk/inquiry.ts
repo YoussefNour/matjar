@@ -39,7 +39,9 @@ export type MailSender = {
 };
 
 export type Delivery =
-  { outcome: "sent" } | { outcome: "unconfigured" } | { outcome: "failed" };
+  | { outcome: "sent" }
+  | { outcome: "unconfigured"; reason: string }
+  | { outcome: "failed"; reason: string };
 
 const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
@@ -97,8 +99,14 @@ export async function deliverInquiry(
     to: string[];
   },
 ): Promise<Delivery> {
-  if (!settings.apiKey || settings.to.length === 0) {
-    return { outcome: "unconfigured" };
+  const apiKey = settings.apiKey?.trim() ?? "";
+
+  if (apiKey.length === 0) {
+    return { outcome: "unconfigured", reason: "RESEND_API_KEY is not set." };
+  }
+
+  if (settings.to.length === 0) {
+    return { outcome: "unconfigured", reason: "No recipients are configured." };
   }
 
   const mail: InquiryMail = {
@@ -112,7 +120,12 @@ export async function deliverInquiry(
   try {
     await sender.send(mail);
     return { outcome: "sent" };
-  } catch {
-    return { outcome: "failed" };
+  } catch (error) {
+    const reason =
+      error instanceof Error
+        ? error.message
+        : "The email service returned an unknown error.";
+
+    return { outcome: "failed", reason };
   }
 }

@@ -71,5 +71,7 @@ export async function sendInquiry(
     return { status: "sent" };
   }
 
-  return { status: "error", message: sendError };
+  console.error("Inquiry email failed:", delivery.reason);
+
+  return { status: "error", message: `${sendError} ${delivery.reason}` };
 }
