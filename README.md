@@ -104,9 +104,9 @@ commit the API key):
 RESEND_API_KEY=re_xxxxxxxx
 ```
 
-Every message is sent from `ahmedbahaa.6251@gmail.com` to
-`ahmedbahaa.6251@gmail.com` and `youssef.ossama2@gmail.com`. That from address
-must be allowed by Resend.
+Every message is sent from `Matjar <onboarding@resend.dev>` to
+`ahmedbahaa.6251@gmail.com` and `youssef.ossama2@gmail.com`. That test sender
+only delivers to the email address on the Resend account.
 Set `CONTACT_TO` to a comma-separated list if those inboxes should change.
 
 The visitor's address is the reply-to, so a reply from either inbox goes
