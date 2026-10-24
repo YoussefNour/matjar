@@ -17,6 +17,9 @@ All notable changes to this project are documented here. Format:
 
 - The landing `build` script now runs Next from the workspace install instead
   of calling `nx`, which is not on the path when Vercel builds `apps/landing`.
+- Declared `@matjar/design-tokens` as a landing dependency so Vercel's install
+  links the shared styles. The app imports that package, and a filtered
+  install does not include workspace packages that are not dependencies.
 - Set the Next file-tracing root to the monorepo so the shared design tokens
   are included in the deployment.
 
