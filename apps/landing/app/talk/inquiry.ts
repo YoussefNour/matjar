@@ -3,10 +3,7 @@ export const MESSAGE_MAX_LENGTH = 2000;
 
 export const INQUIRY_FROM = "Matjar <onboarding@resend.dev>";
 
-export const DEFAULT_RECIPIENTS = [
-  "ahmedbahaa.6251@gmail.com",
-  "youssef.ossama2@gmail.com",
-];
+export const DEFAULT_RECIPIENTS = ["ahmedbahaa.6251@gmail.com"];
 
 export type InquiryFields = {
   name: string;

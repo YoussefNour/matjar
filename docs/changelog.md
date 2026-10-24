@@ -3,6 +3,11 @@
 All notable changes to this project are documented here. Format:
 `date: description - developer`.
 
+## 2026-10-24: Send Let's talk mail only to the Resend account - Ahmed Bahaa
+
+- The default recipient is `ahmedbahaa.6251@gmail.com`, which is the only
+  address Resend's test sender will accept.
+
 ## 2026-10-24: Send Let's talk mail from Resend's test address - Ahmed Bahaa
 
 - The form now sends from `Matjar <onboarding@resend.dev>` because Resend will
