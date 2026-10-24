@@ -3,6 +3,11 @@
 All notable changes to this project are documented here. Format:
 `date: description - developer`.
 
+## 2026-10-24: Send Let's talk mail from Resend's test address - Ahmed Bahaa
+
+- The form now sends from `Matjar <onboarding@resend.dev>` because Resend will
+  not send from gmail.com until a domain is verified.
+
 ## 2026-10-24: Added a Let's talk form that sends through Resend - Ahmed Bahaa
 
 - Replaced the landing store and mailto calls to action with a Let's talk
