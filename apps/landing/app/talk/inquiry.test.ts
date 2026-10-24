@@ -77,7 +77,7 @@ test("treats a filled honeypot as do not send", () => {
   assert.deepEqual(reviewed, { outcome: "discard" });
 });
 
-test("sends to both default inboxes and replies to the visitor", async () => {
+test("sends to the default inbox and replies to the visitor", async () => {
   assert.deepEqual(contactRecipients(undefined), DEFAULT_RECIPIENTS);
   assert.deepEqual(contactRecipients(" one@example.com, two@example.com "), [
     "one@example.com",
