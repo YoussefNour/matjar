@@ -14,13 +14,21 @@
         "options": {
           "command": "next start --port 3001"
         }
+      },
+      "test": {
+        "executor": "nx:run-commands",
+        "options": {
+          "command": "node --disable-warning=MODULE_TYPELESS_PACKAGE_JSON --test app/talk/inquiry.test.ts",
+          "cwd": "{projectRoot}"
+        }
       }
     }
   },
   "dependencies": {
     "next": "16.4.0",
     "react": "19.3.0",
-    "react-dom": "19.3.0"
+    "react-dom": "19.3.0",
+    "resend": "^6.34.1"
   },
   "scripts": {
     "dev": "nx next:dev",

@@ -32,7 +32,7 @@ Our engineers have almost a decade of experience delivering software at
 ITworx, Ejada, Bank Misr, and Suez Canal Bank. That experience sits behind both
 Matjar and every custom engagement.
 
-To discuss a project, write to [hello@matjar.store](mailto:hello@matjar.store).
+To discuss a project, use the Let's talk form on the landing site.
 See [Services](docs/services.md) for the full offer.
 
 ## Project structure
@@ -96,14 +96,21 @@ npx nx show project matjar
 
 ## Configuration
 
-The landing app links its calls to action to the store app. Set the target URL
-when the store is deployed:
+The landing Let's talk form sends mail through [Resend](https://resend.com).
+Set these in the environment for `apps/landing` (a local `.env` is fine; do not
+commit the API key):
 
 ```bash
-NEXT_PUBLIC_STORE_URL=https://shop.example.com
+RESEND_API_KEY=re_xxxxxxxx
 ```
 
-It defaults to `http://localhost:3000` in development.
+Every message is sent from `ahmedbahaa.6251@gmail.com` to
+`ahmedbahaa.6251@gmail.com` and `youssef.ossama2@gmail.com`. That from address
+must be allowed by Resend.
+Set `CONTACT_TO` to a comma-separated list if those inboxes should change.
+
+The visitor's address is the reply-to, so a reply from either inbox goes
+back to the person who wrote in.
 
 ## Documentation
 

@@ -51,6 +51,5 @@ tests. There is no separate "agency stack" to maintain.
 
 ## Contact
 
-Write to [hello@matjar.store](mailto:hello@matjar.store) with a short
-description of what you need. Include the systems you already use and the
-outcome you want; we will reply with questions or a first plan.
+Use the Let's talk form on the landing site. Describe what you need, the
+systems you already use, and the outcome you want. We reply by email.
