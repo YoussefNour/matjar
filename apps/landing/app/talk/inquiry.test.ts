@@ -2,18 +2,21 @@ import assert from "node:assert/strict";
 import test from "node:test";
 
 import {
+  DAILY_INQUIRY_LIMIT,
   DEFAULT_RECIPIENTS,
   INQUIRY_FROM,
   MESSAGE_MAX_LENGTH,
   contactRecipients,
   deliverInquiry,
   reviewInquiry,
+  takeInquirySlot,
   type InquiryMail,
 } from "./inquiry.ts";
 
 const readyFields = {
   name: "Amina",
   email: "amina@example.com",
+  phone: "+20 100 000 0000",
   message: "I need a customer portal next to my store.",
   company: "",
 };
@@ -34,6 +37,24 @@ test("rejects a missing name, email, or message", () => {
   assert.equal(missingName.errors.name, "Enter your name.");
   assert.equal(missingEmail.errors.email, "Enter your email.");
   assert.equal(missingMessage.errors.message, "Tell us what you need.");
+});
+
+test("rejects a missing or invalid phone number", () => {
+  const missingPhone = reviewInquiry({ ...readyFields, phone: "  " });
+  const shortPhone = reviewInquiry({ ...readyFields, phone: "12345" });
+  const letters = reviewInquiry({ ...readyFields, phone: "call-me-now" });
+
+  assert.equal(missingPhone.outcome, "invalid");
+  assert.equal(shortPhone.outcome, "invalid");
+  assert.equal(letters.outcome, "invalid");
+
+  if (missingPhone.outcome !== "invalid") return;
+  if (shortPhone.outcome !== "invalid") return;
+  if (letters.outcome !== "invalid") return;
+
+  assert.equal(missingPhone.errors.phone, "Enter your phone number.");
+  assert.equal(shortPhone.errors.phone, "Enter a valid phone number.");
+  assert.equal(letters.errors.phone, "Enter a valid phone number.");
 });
 
 test("rejects a malformed email and an oversized message", () => {
@@ -64,6 +85,7 @@ test("accepts a normal inquiry", () => {
     outcome: "send",
     name: "Amina",
     email: "amina@example.com",
+    phone: readyFields.phone,
     message: readyFields.message,
   });
 });
@@ -88,7 +110,8 @@ test("sends to the default inbox and replies to the visitor", async () => {
   const inquiry = {
     name: "Amina",
     email: "amina@example.com",
-    message: "Hello",
+    phone: "+20 100 000 0000",
+    message: "I need a customer portal.",
   };
 
   const skipped = await deliverInquiry(
@@ -126,11 +149,27 @@ test("sends to the default inbox and replies to the visitor", async () => {
   assert.deepEqual(sent[0]?.to, [...DEFAULT_RECIPIENTS]);
   assert.equal(sent[0]?.replyTo, "amina@example.com");
   assert.equal(sent[0]?.subject, "Let's talk: Amina");
+  assert.equal(
+    sent[0]?.text,
+    [
+      "Name: Amina",
+      "Email: amina@example.com",
+      "Phone: +20 100 000 0000",
+      "",
+      "Message:",
+      "I need a customer portal.",
+    ].join("\n"),
+  );
 });
 
 test("reports a sender failure without throwing", async () => {
   const delivered = await deliverInquiry(
-    { name: "Amina", email: "amina@example.com", message: "Hello" },
+    {
+      name: "Amina",
+      email: "amina@example.com",
+      phone: "+20 100 000 0000",
+      message: "Hello",
+    },
     {
       send: async () => {
         throw new Error("resend down");
@@ -146,4 +185,16 @@ test("reports a sender failure without throwing", async () => {
   if (delivered.outcome === "failed") {
     assert.equal(delivered.reason, "resend down");
   }
+});
+
+test("allows 10 submits per IP per day and still allows another IP", () => {
+  const store = new Map<string, number>();
+  const day = "2026-10-24";
+
+  for (let attempt = 0; attempt < DAILY_INQUIRY_LIMIT; attempt += 1) {
+    assert.equal(takeInquirySlot(store, "203.0.113.8", day), true);
+  }
+
+  assert.equal(takeInquirySlot(store, "203.0.113.8", day), false);
+  assert.equal(takeInquirySlot(store, "203.0.113.9", day), true);
 });

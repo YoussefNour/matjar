@@ -1,5 +1,6 @@
 export const NAME_MAX_LENGTH = 80;
 export const MESSAGE_MAX_LENGTH = 2000;
+export const DAILY_INQUIRY_LIMIT = 10;
 
 export const INQUIRY_FROM = "Matjar <onboarding@resend.dev>";
 
@@ -8,6 +9,7 @@ export const DEFAULT_RECIPIENTS = ["ahmedbahaa.6251@gmail.com"];
 export type InquiryFields = {
   name: string;
   email: string;
+  phone: string;
   message: string;
   company: string;
 };
@@ -15,13 +17,21 @@ export type InquiryFields = {
 export type FieldErrors = {
   name?: string;
   email?: string;
+  phone?: string;
   message?: string;
+};
+
+export type SentInquiry = {
+  name: string;
+  email: string;
+  phone: string;
+  message: string;
 };
 
 export type ReviewedInquiry =
   | { outcome: "invalid"; errors: FieldErrors }
   | { outcome: "discard" }
-  | { outcome: "send"; name: string; email: string; message: string };
+  | ({ outcome: "send" } & SentInquiry);
 
 export type InquiryMail = {
   from: string;
@@ -41,6 +51,7 @@ export type Delivery =
   | { outcome: "failed"; reason: string };
 
 const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+const phonePattern = /^\+?\d{8,15}$/;
 
 export function reviewInquiry(fields: InquiryFields): ReviewedInquiry {
   if (fields.company.trim() !== "") {
@@ -49,6 +60,7 @@ export function reviewInquiry(fields: InquiryFields): ReviewedInquiry {
 
   const name = fields.name.trim();
   const email = fields.email.trim();
+  const phone = fields.phone.trim();
   const message = fields.message.trim();
   const errors: FieldErrors = {};
 
@@ -64,17 +76,50 @@ export function reviewInquiry(fields: InquiryFields): ReviewedInquiry {
     errors.email = "Enter a valid email.";
   }
 
+  if (phone.length === 0) {
+    errors.phone = "Enter your phone number.";
+  } else if (!phonePattern.test(phone.replace(/[\s()-]/g, ""))) {
+    errors.phone = "Enter a valid phone number.";
+  }
+
   if (message.length === 0) {
     errors.message = "Tell us what you need.";
   } else if (message.length > MESSAGE_MAX_LENGTH) {
     errors.message = "Use a shorter message.";
   }
 
-  if (errors.name || errors.email || errors.message) {
+  if (errors.name || errors.email || errors.phone || errors.message) {
     return { outcome: "invalid", errors };
   }
 
-  return { outcome: "send", name, email, message };
+  return { outcome: "send", name, email, phone, message };
+}
+
+export function inquiryText(inquiry: SentInquiry): string {
+  return [
+    `Name: ${inquiry.name}`,
+    `Email: ${inquiry.email}`,
+    `Phone: ${inquiry.phone}`,
+    "",
+    "Message:",
+    inquiry.message,
+  ].join("\n");
+}
+
+export function takeInquirySlot(
+  store: Map<string, number>,
+  ip: string,
+  day: string,
+): boolean {
+  const key = `${day}:${ip}`;
+  const used = store.get(key) ?? 0;
+
+  if (used >= DAILY_INQUIRY_LIMIT) {
+    return false;
+  }
+
+  store.set(key, used + 1);
+  return true;
 }
 
 export function contactRecipients(contactTo: string | undefined): string[] {
@@ -89,7 +134,7 @@ export function contactRecipients(contactTo: string | undefined): string[] {
 }
 
 export async function deliverInquiry(
-  inquiry: { name: string; email: string; message: string },
+  inquiry: SentInquiry,
   sender: MailSender,
   settings: {
     apiKey: string | undefined;
@@ -111,7 +156,7 @@ export async function deliverInquiry(
     to: settings.to,
     replyTo: inquiry.email,
     subject: `Let's talk: ${inquiry.name.replace(/[\r\n]+/g, " ")}`,
-    text: `${inquiry.name} <${inquiry.email}>\n\n${inquiry.message}`,
+    text: inquiryText(inquiry),
   };
 
   try {

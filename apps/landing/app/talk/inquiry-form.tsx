@@ -11,7 +11,12 @@ export function InquiryForm() {
     sendInquiry,
     initialState,
   );
-  const [draft, setDraft] = useState({ name: "", email: "", message: "" });
+  const [draft, setDraft] = useState({
+    name: "",
+    email: "",
+    phone: "",
+    message: "",
+  });
   const errors = state.status === "invalid" ? state.errors : {};
 
   function updateDraft(name: keyof typeof draft, value: string) {
@@ -69,6 +74,15 @@ export function InquiryForm() {
         onChange={(value) => updateDraft("email", value)}
       />
       <Field
+        label="Phone"
+        name="phone"
+        type="tel"
+        autoComplete="tel"
+        error={errors.phone}
+        value={draft.phone}
+        onChange={(value) => updateDraft("phone", value)}
+      />
+      <Field
         label="Message"
         name="message"
         autoComplete="off"
@@ -122,7 +136,7 @@ function Field({
   error?: string;
   value: string;
   onChange: (value: string) => void;
-  type?: "text" | "email";
+  type?: "text" | "email" | "tel";
   multiline?: boolean;
   hint?: string;
 }) {
