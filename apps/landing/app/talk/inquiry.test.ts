@@ -102,6 +102,9 @@ test("sends to both default inboxes and replies to the visitor", async () => {
     },
   );
   assert.equal(skipped.outcome, "unconfigured");
+  if (skipped.outcome === "unconfigured") {
+    assert.equal(skipped.reason, "RESEND_API_KEY is not set.");
+  }
   assert.equal(sent.length, 0);
 
   const delivered = await deliverInquiry(
@@ -140,4 +143,7 @@ test("reports a sender failure without throwing", async () => {
   );
 
   assert.equal(delivered.outcome, "failed");
+  if (delivered.outcome === "failed") {
+    assert.equal(delivered.reason, "resend down");
+  }
 });
