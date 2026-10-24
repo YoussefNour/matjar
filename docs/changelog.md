@@ -22,6 +22,8 @@ All notable changes to this project are documented here. Format:
   install does not include workspace packages that are not dependencies.
 - Set the Next file-tracing root to the monorepo so the shared design tokens
   are included in the deployment.
+- Added `@types/node` to the landing app so Vercel's filtered install can
+  typecheck `next.config.ts`.
 
 ## 2026-10-22: Added a pull request skill and description style - Youssef Ossama
 
