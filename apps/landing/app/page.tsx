@@ -1,8 +1,7 @@
 import type { ReactNode } from "react";
 
-import { MatjarMark } from "./components/matjar-mark";
-
-const storeUrl = process.env.NEXT_PUBLIC_STORE_URL ?? "http://localhost:3000";
+import { ArrowRight } from "./components/arrow-right";
+import { SiteHeader } from "./components/site-header";
 
 const features = [
   {
@@ -111,7 +110,7 @@ const faqs = [
   {
     question: "Can you build something custom for my business?",
     answer:
-      "Yes. Matjar is the commerce platform, and our engineering team builds the custom pieces around it: portals, integrations, internal tools, and new products. We have almost a decade of experience delivering software at ITworx, Ejada, Bank Misr, and Suez Canal Bank. Write to hello@matjar.store with what you need.",
+      "Yes. Matjar is the commerce platform, and our engineering team builds the custom pieces around it: portals, integrations, internal tools, and new products. We have almost a decade of experience delivering software at ITworx, Ejada, Bank Misr, and Suez Canal Bank. Use Let's talk and tell us what you need.",
   },
   {
     question: "Can I use my own domain?",
@@ -129,23 +128,6 @@ const faqs = [
       "Matjar is free while in private beta. You only pay for your domain and payment processing fees.",
   },
 ];
-
-function ArrowRight({ className = "" }: { className?: string }) {
-  return (
-    <svg
-      aria-hidden="true"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="1.8"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      className={className}
-    >
-      <path d="M5 12h14m-6-6 6 6-6 6" />
-    </svg>
-  );
-}
 
 function FeatureIcon({ children }: { children: ReactNode }) {
   return (
@@ -273,52 +255,7 @@ function HeroPreview() {
 export default function Home() {
   return (
     <>
-      <header className="sticky top-0 z-50 border-b border-foreground/5 bg-background/80 backdrop-blur-md">
-        <div className="mx-auto flex max-w-page items-center justify-between px-5 py-4 sm:px-8">
-          <a
-            href="#"
-            className="flex items-center gap-2.5"
-            aria-label="Matjar home"
-          >
-            <MatjarMark className="size-9 text-primary" />
-            <span className="text-lead font-semibold tracking-tight">
-              matjar
-            </span>
-          </a>
-
-          <nav className="hidden items-center gap-7 text-small text-foreground-muted md:flex">
-            <a
-              className="transition-colors hover:text-foreground"
-              href="#features"
-            >
-              Features
-            </a>
-            <a
-              className="transition-colors hover:text-foreground"
-              href="#services"
-            >
-              Services
-            </a>
-            <a
-              className="transition-colors hover:text-foreground"
-              href="#how-it-works"
-            >
-              How it works
-            </a>
-            <a className="transition-colors hover:text-foreground" href="#faq">
-              FAQ
-            </a>
-          </nav>
-
-          <a
-            href={storeUrl}
-            className="inline-flex items-center gap-1.5 rounded-full bg-primary px-4 py-2 text-small font-medium text-primary-foreground transition-colors hover:bg-primary-hover"
-          >
-            Open store
-            <ArrowRight className="size-4" />
-          </a>
-        </div>
-      </header>
+      <SiteHeader />
 
       <main>
         <section className="relative overflow-hidden">
@@ -353,11 +290,11 @@ export default function Home() {
 
               <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:items-center">
                 <a
-                  href={storeUrl}
-                  className="inline-flex items-center justify-center gap-2 rounded-full bg-primary px-6 py-3.5 text-small font-semibold text-primary-foreground shadow-lg transition-colors hover:bg-primary-hover"
+                  href="/talk"
+                  className="inline-flex min-h-11 items-center justify-center gap-2 rounded-full bg-primary px-6 py-3.5 text-small font-semibold text-primary-foreground shadow-lg transition-colors hover:bg-primary-hover"
                 >
-                  Start selling free
-                  <ArrowRight className="size-4" />
+                  Let&apos;s talk
+                  <ArrowRight className="size-4 icon-directional" />
                 </a>
                 <a
                   href="#how-it-works"
@@ -469,7 +406,7 @@ export default function Home() {
                 </div>
 
                 <a
-                  href="mailto:hello@matjar.store?subject=Custom%20software"
+                  href="/talk"
                   className="mt-6 inline-flex min-h-11 items-center gap-2 rounded-lg border border-border bg-surface px-4 text-small font-medium text-foreground transition-colors hover:border-border-strong hover:bg-surface-muted"
                 >
                   Tell us what you need
@@ -544,12 +481,12 @@ export default function Home() {
               </p>
               <h2 className="mt-3 text-h2">Good questions</h2>
               <p className="mt-4 text-body leading-7 text-foreground-muted">
-                Still curious? Write to us at{" "}
+                Still curious?{" "}
                 <a
                   className="font-medium text-primary underline-offset-4 hover:underline"
-                  href="mailto:hello@matjar.store"
+                  href="/talk"
                 >
-                  hello@matjar.store
+                  Let&apos;s talk
                 </a>
                 .
               </p>
@@ -601,11 +538,11 @@ export default function Home() {
                 and checkout. You could be live before your coffee goes cold.
               </p>
               <a
-                href={storeUrl}
-                className="mt-8 inline-flex items-center justify-center gap-2 rounded-full bg-accent px-6 py-3.5 text-small font-semibold text-accent-foreground transition-colors hover:bg-accent/90"
+                href="/talk"
+                className="mt-8 inline-flex min-h-11 items-center justify-center gap-2 rounded-full bg-accent px-6 py-3.5 text-small font-semibold text-accent-foreground transition-colors hover:bg-accent-hover"
               >
-                Open your store
-                <ArrowRight className="size-4" />
+                Let&apos;s talk
+                <ArrowRight className="size-4 icon-directional" />
               </a>
               <p className="mt-4 text-caption text-background">
                 Free while in beta · No credit card required

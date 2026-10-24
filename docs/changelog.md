@@ -3,6 +3,16 @@
 All notable changes to this project are documented here. Format:
 `date: description - developer`.
 
+## 2026-10-24: Added a Let's talk form that sends through Resend - Ahmed Bahaa
+
+- Replaced the landing store and mailto calls to action with a Let's talk
+  screen at `/talk`.
+- The form asks for a name, email, and message, then sends the message through
+  Resend from `ahmedbahaa.6251@gmail.com` to both default inboxes, with the
+  visitor's address as the reply-to.
+- Added inquiry validation tests and documented `RESEND_API_KEY` and optional
+  `CONTACT_TO`.
+
 ## 2026-10-22: Added a pull request skill and description style - Youssef Ossama
 
 - Added `.opencode/skills/create-pr/` with the branch-to-PR workflow: scope
