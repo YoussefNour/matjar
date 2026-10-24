@@ -112,6 +112,12 @@ Set `CONTACT_TO` to a comma-separated list if those inboxes should change.
 The visitor's address is the reply-to, so a reply from either inbox goes
 back to the person who wrote in.
 
+## Deployment
+
+Deploy the landing app on Vercel with the project root set to `apps/landing`.
+The app build runs Next from the workspace install, so Vercel does not need
+`nx` on the command path.
+
 ## Documentation
 
 - [Services](docs/services.md) — commerce platform, custom software, and how we

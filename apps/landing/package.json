@@ -32,7 +32,7 @@
   },
   "scripts": {
     "dev": "nx next:dev",
-    "build": "nx next:build",
+    "build": "node ../../node_modules/next/dist/bin/next build",
     "start": "nx next:start",
     "lint": "eslint"
   },
